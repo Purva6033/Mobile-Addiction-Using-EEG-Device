@@ -1,5 +1,10 @@
+
 cd /c/Users/Admin/Desktop
 
+# Delete the old file
+rm Jenkinsfile
+
+# Create new file with proper content
 cat > Jenkinsfile << 'EOF'
 pipeline {
     agent any
@@ -47,18 +52,17 @@ pipeline {
             steps {
                 echo '🚀 Deployment stage...'
                 bat 'echo Project ready for deployment'
-                bat 'echo All dependencies installed: numpy, pandas, scikit-learn, matplotlib, tensorflow, keras'
+                bat 'echo All dependencies installed'
             }
         }
     }
     
     post {
         success {
-            echo '✅ ✅ ✅ Pipeline completed successfully!'
-            echo 'All Python packages installed and verified!'
+            echo '✅ Pipeline completed successfully!'
         }
         failure {
-            echo '❌ Pipeline failed - check logs above'
+            echo '❌ Pipeline failed'
         }
         always {
             echo '🏁 Pipeline execution finished'
@@ -66,3 +70,6 @@ pipeline {
     }
 }
 EOF
+
+# Verify the file was created correctly
+cat Jenkinsfile
