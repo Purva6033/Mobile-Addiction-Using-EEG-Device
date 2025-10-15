@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+<style>
+    /* Body & Background */
+    body {
+        background: url('/static/img.jpg') no-repeat center center fixed; /* Add your image in /static folder */
+        background-size: cover;
+        font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Card Container */
+    .container {
+        background: rgba(255, 255, 255, 0.85); /* Overlay with slight transparency */
+        max-width: 500px;
+        width: 90%;
+        padding: 40px 30px;
+        border-radius: 16px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        backdrop-filter: blur(10px); /* Subtle blur effect */
+    }
+
+    h2 {
+        margin-bottom: 24px;
+        font-size: 2rem;
+        color: #1e2a38;
+    }
+
+    /* Prediction Box */
+    #prediction {
+        background: #4b79a1;
+        color: #fff;
+        padding: 18px 20px;
+        border-radius: 12px;
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    /* Button */
+    #showTipsBtn {
+        display: block;
+        margin: 0 auto 20px auto;
+        background: linear-gradient(90deg, #4b79a1 0%, #283e51 100%);
+        color: #fff;
+        border: none;
+        padding: 14px 36px;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    #showTipsBtn:hover {
+        transform: translateY(-3px) scale(1.05);
+        opacity: 0.95;
+    }
+
+    /* Tips Box */
+    #tips {
+        display: none;
+        max-width: 90%;
+        margin: 0 auto 25px auto;
+        background: rgba(247, 249, 252, 0.95);
+        color: #1e2a38;
+        padding: 20px;
+        border-radius: 12px;
+        text-align: left;
+        font-weight: 500;
+        line-height: 1.6;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        animation: fadeInTips 0.5s ease forwards;
+    }
+
+    #tips ul {
+        padding-left: 20px;
+        margin: 0;
+    }
+
+    #tips li {
+        margin-bottom: 10px;
+        position: relative;
+    }
+
+    #tips li::before {
+        content: "✔️";
+        margin-right: 8px;
+        color: #4b79a1;
+    }
+
+    /* Upload another file link */
+    a {
+        display: inline-block;
+        background: #2575fc;
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 32px;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    a:hover {
+        background: #6a11cb;
+        transform: translateY(-2px) scale(1.03);
+    }
+
+    /* Animations */
+    @keyframes fadeInTips {
+        from {opacity: 0; transform: translateY(10px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <h2>Prediction Result</h2>
+        <p id="prediction">{{ result }}</p>
+
+        <!-- Show Prevention Tips Button -->
+        <button id="showTipsBtn">Show Prevention Tips</button>
+
+        <!-- Tips Box -->
+        <div id="tips">
+            <ul>
+                {% for tip in tips.split('\n') %}
+                <li>{{ tip }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Upload Another File Link -->
+        <a href="/">Upload another file</a>
+    </div>
+
+    <script>
+    document.getElementById('showTipsBtn').addEventListener('click', function() {
+        var tips = document.getElementById('tips');
+        tips.style.display = (tips.style.display === 'block') ? 'none' : 'block';
+    });
+    </script>
+</body>
+</html>

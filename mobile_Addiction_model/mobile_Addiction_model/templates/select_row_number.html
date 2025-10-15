@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Row Number</title>
+  <style>
+  body {
+      background: url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+  }
+
+  body::before {
+      content: "";
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(40, 62, 81, 0.6);
+      z-index: 0;
+  }
+
+  /* Center two cards */
+  .wrapper {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+  }
+
+  .container {
+      background: rgba(255, 255, 255, 0.95);
+      width: 350px;
+      padding: 35px 30px;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      text-align: center;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+  }
+
+  h2 {
+      margin-bottom: 24px;
+      font-size: 1.7rem;
+      color: #1e2a38;
+  }
+
+  form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 18px;
+  }
+
+  label {
+      font-size: 1rem;
+      color: #1e2a38;
+      font-weight: 500;
+      text-align: left;
+  }
+
+  input[type="number"] {
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.3s, box-shadow 0.3s;
+  }
+
+  input[type="number"]:focus {
+      border-color: #2575fc;
+      box-shadow: 0 0 10px rgba(37, 117, 252, 0.4);
+  }
+
+  button {
+      background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  }
+
+  button:hover {
+      transform: translateY(-3px) scale(1.03);
+      opacity: 0.95;
+  }
+
+  a {
+      display: inline-block;
+      margin-top: 16px;
+      background: #2575fc;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 32px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+  }
+
+  a:hover {
+      background: #6a11cb;
+      transform: translateY(-2px) scale(1.03);
+  }
+
+  @media(max-width:480px) {
+      .wrapper {
+          flex-direction: column;
+          gap: 20px;
+      }
+      .container {
+          width: 90%;
+      }
+  }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Card 1: Select Row -->
+    <div class="container">
+        <h2>Select Row Number for Prediction</h2>
+        <form method="post" action="/predict_row">
+            <input type="hidden" name="filename" value="{{ filename }}">
+            <label for="row_number">Row number (0 to {{ row_count-1 }}):</label>
+            <input type="number" id="row_number" name="row_number" min="0" max="{{ row_count-1 }}" required>
+            <button type="submit">Predict</button>
+        </form>
+        <p>Total rows: {{ row_count }}</p>
+        <a href="/">Upload another file</a>
+    </div>
+
+   
+  </div>
+</body>
+</html>

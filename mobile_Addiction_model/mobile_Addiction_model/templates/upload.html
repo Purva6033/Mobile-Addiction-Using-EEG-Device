@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload EEG CSV or Test Addiction</title>
+  <style>
+    /* Body & Background */
+    body {
+      background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top:0; left:0; right:0; bottom:0;
+      background: rgba(40, 62, 81, 0.6);
+      z-index: 0;
+    }
+
+    /* Card layout */
+    .card-container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: center;
+      width: 90%;
+      max-width: 1000px;
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    /* Glass card */
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      width: 420px;
+      padding: 40px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    }
+
+    h2 {
+      margin-bottom: 28px;
+      font-size: 1.8rem;
+      color: #1e2a38;
+    }
+
+    /* File Input */
+    input[type="file"] {
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+
+    input[type="file"]:focus {
+      border-color: #2575fc;
+      box-shadow: 0 0 10px rgba(37, 117, 252, 0.4);
+    }
+
+    /* Button */
+    button, .btn {
+      background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+      color: #fff;
+      border: none;
+      padding: 14px 0;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      width: 100%;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    button:hover, .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      opacity: 0.95;
+    }
+
+    /* Flash messages */
+    .flashes {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .flashes li {
+      background: #f8d7da;
+      color: #842029;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media(max-width: 900px) {
+      .card-container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card-container">
+
+    <!-- EEG Upload Card -->
+    <div class="card">
+      <h2>Upload EEG CSV File</h2>
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <ul class="flashes">
+          {% for message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+      <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required>
+        <button type="submit">Upload & Predict</button>
+      </form>
+    </div>
+
+    <!-- Addiction Test Card -->
+    <div class="card">
+      <h2>Test Your Level of Addiction</h2>
+      <p>Curious about your digital or social media addiction level?  
+      Take our quick interactive test and find out.</p>
+      <a href="/addiction" class="btn">Start Addiction Test</a>
+    </div>
+
+  </div>
+</body>
+</html>
