@@ -1,0 +1,12 @@
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY mobile_Addiction_model/mobile_Addiction_model /app/
+
+RUN pip install --no-cache-dir flask werkzeug numpy pandas scikit-learn joblib matplotlib tensorflow
+
+EXPOSE 5000
+
+CMD ["python", "-c", "from app import app; app.run(host='0.0.0.0', port=5000, debug=True)"]

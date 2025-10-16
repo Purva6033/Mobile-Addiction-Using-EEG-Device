@@ -1,0 +1,6 @@
+CONTAINER ID   NAME                                                                                                                   CPU %     MEM USAGE / LIMIT     MEM %     NET I/O           BLOCK I/O         PIDS
+e3406b2515ac   k8s_mobile-addiction-app_mobile-addiction-deployment-77cd5666f9-wgtvg_default_12a7634f-c8ad-48e0-8eca-06bb86a466c0_0   0.39%     564.1MiB / 2GiB       27.55%    0B / 0B           12MB / 1.6MB      31
+ac299f32745c   k8s_mobile-addiction-app_mobile-addiction-deployment-77cd5666f9-gshhq_default_92bd7632-b792-4882-b5a9-ca6118425e0f_0   0.40%     566.6MiB / 2GiB       27.66%    0B / 0B           14MB / 1.6MB      31
+353a2c537c70   jenkins                                                                                                                0.31%     485.7MiB / 7.582GiB   6.26%     7.78MB / 671kB    2.3MB / 123MB     51
+3b4f4f0da6c7   clever_leavitt                                                                                                         0.00%     10.5MiB / 7.582GiB    0.14%     1.02kB / 126B     8.39MB / 12.3kB   9
+92ee683da14c   mobile-addiction-app                                                                                                   0.38%     562MiB / 7.582GiB     7.24%     14.4kB / 34.6kB   12.8MB / 1.67MB   31

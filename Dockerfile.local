@@ -1,0 +1,28 @@
+
+FROM nginx:alpine
+
+# Install Python3 and pip
+RUN apk add --no-cache python3 py3-pip
+
+# Create working directory
+WORKDIR /app
+
+# Copy application files
+COPY mobile_Addiction_model/mobile_Addiction_model /app/
+
+# Install all required Python packages
+RUN pip3 install --break-system-packages \
+    flask \
+    werkzeug \
+    numpy \
+    pandas \
+    scikit-learn \
+    joblib \
+    matplotlib \
+    || echo "Installed available packages"
+
+# Expose port 5000
+EXPOSE 5000
+
+# Run the Flask app
+CMD ["python3", "app.py"]
